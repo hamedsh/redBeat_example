@@ -6,7 +6,7 @@ import celeryConfig
 import time
 
 from celery import Celery
-from datetime import datetime, time
+from datetime import datetime
 
 app = Celery('celeryExample')
 app.config_from_object(celeryConfig)
@@ -20,6 +20,7 @@ def heartBeat():
 
 @app.task
 def urlSpeed(url, method, timeout):
+    print('-------- inside urlSpeed')
     try:
         st = time.time()
         res = requests.request(method.upper(), url, timeout=timeout)
