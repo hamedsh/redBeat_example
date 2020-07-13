@@ -1,6 +1,7 @@
 import os
 import sys
 import requests
+
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 import celeryConfig
 import time
@@ -19,7 +20,7 @@ def heartBeat():
 
 
 @app.task
-def urlSpeed(url, method, timeout):
+def urlSpeed(url, method, timeout, key):
     print('-------- inside urlSpeed')
     try:
         st = time.time()
@@ -28,10 +29,9 @@ def urlSpeed(url, method, timeout):
         load_time = round(load_time, 1)
         res.raise_for_status()
     except requests.exceptions.Timeout as e:
-        return 408, "timeout exception"
+        return key, 408, "timeout exception"
     except requests.HTTPError as e:
-        return -1, "Failed to get fund status from MFR API: {}".format(str(e.errno))
+        return key, -1, "Failed to get fund status from API: {}".format(str(e.errno))
     except Exception as e:
-        return -2, e.args[0]
-    return 200,load_time
-
+        return key, -2, e.args[0]
+    return key, 200, load_time
