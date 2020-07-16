@@ -16,6 +16,6 @@ terminal 2:
 
 terminal 3:
 
-- add tas:
+- add task:
 `python3 urlSpeed.py -a -u www.google.com -k [key]`
 -delete task: `python3 urlSpeed.py -a -k [key]`
