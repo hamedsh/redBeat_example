@@ -3,7 +3,7 @@ redbeat periodic task with mongodb result backend
 
 `apt install redis-server mongodb-server`
 
-`pip3 install celery-redbeat pymongo `
+`pip3 install requirements.txt` or activate the venv
 
 run:
 terminal 1:
