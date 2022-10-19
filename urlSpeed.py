@@ -24,7 +24,7 @@ def doAction(args):
         if url is None:
             print('url is required')
             return -1
-        entry = Entry(f'urlCheck_{key}', 'tasks.urlSpeed', repeat, args=['GET', url, timeout, key], app=tasks.app)
+        entry = Entry(f'urlCheck_{key}', 'tasks.urlSpeed', repeat, args=[url, 'GET', timeout, key], app=tasks.app)
         entry.save()
         print(f"url added, key={entry.key}, store key for deletion")
     elif args.delete:
